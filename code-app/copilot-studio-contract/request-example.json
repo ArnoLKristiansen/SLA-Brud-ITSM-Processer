@@ -1,0 +1,17 @@
+{
+  "processName": "Incident Management",
+  "periodFrom": "2026-03-01",
+  "periodTo": "2026-03-31",
+  "events": [
+    {
+      "procesnavn": "Incident Management",
+      "aktivitet": "A1 - hændelser løst inden for 3 timer",
+      "slaScore": "78",
+      "status": "red",
+      "start": "2026-03-01",
+      "slut": "2026-03-31",
+      "fejlbeskrivelse": "Længerevarende kapacitetsproblemer i backend forårsagede forsinket håndtering."
+    }
+  ],
+  "instruction": "Generér dansk professionel opsummering med sektionerne: beskrivelse, kundepåvirkning, opfølgning, handlingsplan. Brug neutral tone og afsnit."
+}

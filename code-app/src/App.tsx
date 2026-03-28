@@ -263,7 +263,7 @@ export default function App() {
       )
     : breaches
 
-  const generateProcessSummary = (
+  const generateLocalProcessSummary = (
     processName: string,
     fromDate: string,
     toDate: string,
@@ -310,6 +310,101 @@ export default function App() {
         'Hændelserne er gennemgået med de ansvarlige drifts- og procesteams med fokus på årsagsafklaring, validering af tidslinjer og vurdering af afhængigheder på tværs af leverancer. Der arbejdes systematisk med at sikre fælles forståelse af, hvor procesforløb og koordinering kan styrkes.',
       actionPlanSection:
         'Der igangsættes målrettet opfølgning med tydelig ansvarstildeling, skærpet overvågning af de mest følsomme aktiviteter samt strammere styring af kommunikation og eskalation. Derudover planlægges forebyggende procesjusteringer og læringsopsamling, så tilsvarende hændelser reduceres i kommende rapporteringsperioder.',
+    }
+  }
+
+  const generateProcessSummary = async (
+    processName: string,
+    fromDate: string,
+    toDate: string,
+    allBreaches: SLABreach[]
+  ): Promise<GeneratedSummary | null> => {
+    const localSummary = generateLocalProcessSummary(processName, fromDate, toDate, allBreaches)
+    if (!localSummary) {
+      return null
+    }
+
+    const endpoint = import.meta.env.VITE_COPILOT_STUDIO_ENDPOINT as string | undefined
+    const apiKey = import.meta.env.VITE_COPILOT_STUDIO_API_KEY as string | undefined
+
+    if (!endpoint) {
+      return localSummary
+    }
+
+    const pickFirstText = (source: any, keys: string[]) => {
+      for (const key of keys) {
+        const value = source?.[key]
+        if (typeof value === 'string' && value.trim()) {
+          return value
+        }
+      }
+
+      return ''
+    }
+
+    try {
+      const redEvents = allBreaches
+        .filter(
+          (breach) =>
+            breach.processName === processName &&
+            breach.dateFrom === fromDate &&
+            breach.dateTo === toDate &&
+            breach.severity === 'red'
+        )
+        .map((breach) => ({
+          procesnavn: breach.processName,
+          aktivitet: breach.slaDescription,
+          slaScore: breach.measurement,
+          status: breach.severity,
+          start: breach.dateFrom,
+          slut: breach.dateTo,
+          fejlbeskrivelse: breach.explanation,
+        }))
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {}),
+        },
+        body: JSON.stringify({
+          processName,
+          periodFrom: fromDate,
+          periodTo: toDate,
+          events: redEvents,
+          instruction:
+            'Generér dansk professionel opsummering med sektionerne: beskrivelse, kundepåvirkning, opfølgning, handlingsplan. Brug neutral tone og afsnit.',
+        }),
+      })
+
+      if (!response.ok) {
+        return localSummary
+      }
+
+      const payload = await response.json()
+      const summaryPayload = payload?.summary ?? payload?.data?.summary ?? payload?.result ?? payload
+
+      const descriptionSection =
+        pickFirstText(summaryPayload, ['descriptionSection', 'beskrivelse', 'beskrivelseAfNedbrud']) ||
+        localSummary.descriptionSection
+      const impactSection =
+        pickFirstText(summaryPayload, ['impactSection', 'kundepavirkning', 'kundePaavirkning', 'kundepåvirkning']) ||
+        localSummary.impactSection
+      const followUpSection =
+        pickFirstText(summaryPayload, ['followUpSection', 'opfolgning', 'opfølgning']) ||
+        localSummary.followUpSection
+      const actionPlanSection =
+        pickFirstText(summaryPayload, ['actionPlanSection', 'handlingsplan']) || localSummary.actionPlanSection
+
+      return {
+        ...localSummary,
+        descriptionSection,
+        impactSection,
+        followUpSection,
+        actionPlanSection,
+      }
+    } catch {
+      return localSummary
     }
   }
 
@@ -546,7 +641,7 @@ export default function App() {
         setMeasurement('')
         setSeverity('green')
       } else {
-        const summary = generateProcessSummary(
+        const summary = await generateProcessSummary(
           submittedProcessName,
           submittedDateFrom,
           submittedDateTo,
@@ -780,11 +875,11 @@ export default function App() {
               </button>
               <button
                 className="severity-btn"
-                onClick={() => {
+                onClick={async () => {
                   const finishedProcessName = selectedProcessName
                   const finishedDateFrom = dateFrom
                   const finishedDateTo = dateTo
-                  const summary = generateProcessSummary(
+                  const summary = await generateProcessSummary(
                     finishedProcessName,
                     finishedDateFrom,
                     finishedDateTo,

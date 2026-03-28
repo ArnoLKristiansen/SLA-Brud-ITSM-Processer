@@ -4,6 +4,36 @@ This template provides a minimal setup to get React working in Vite with HMR and
 
 It is preconfigured to work with Power Apps Code Apps.
 
+## Copilot Studio integration for SLA summaries
+
+The app can generate monthly summary text from SLA incidents via a Copilot Studio / Power Automate HTTP endpoint.
+
+### 1) Configure environment variables
+
+Copy [.env.example](.env.example) to a local `.env` file in [code-app](.) and fill in your values:
+
+- `VITE_COPILOT_STUDIO_ENDPOINT`: HTTPS endpoint for your flow/agent.
+- `VITE_COPILOT_STUDIO_API_KEY` (optional): sent as `x-api-key` header if set.
+
+### 2) Request/response contract
+
+Use these reference payloads when building your Copilot Studio flow:
+
+- Request example: [copilot-studio-contract/request-example.json](copilot-studio-contract/request-example.json)
+- Response example: [copilot-studio-contract/response-example.json](copilot-studio-contract/response-example.json)
+
+The frontend expects `summary` sections and supports a few fallback key names, but using the example response shape is recommended.
+
+### 3) Run locally
+
+Start development server:
+
+- `npm run dev`
+
+Build validation:
+
+- `npm run build`
+
 Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh

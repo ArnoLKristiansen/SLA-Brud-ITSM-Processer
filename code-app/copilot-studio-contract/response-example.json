@@ -1,0 +1,8 @@
+{
+  "summary": {
+    "descriptionSection": "I marts 2026 er der registreret kritiske hændelser i Incident Management, hvor behandlingstiderne var over det forventede niveau.",
+    "impactSection": "Forsinkelserne har påvirket bankernes svartider i supportnære forløb og reduceret forudsigeligheden i enkelte servicevinduer.",
+    "followUpSection": "Drifts- og procesteam har gennemgået hændelserne, valideret årsager og afklaret afhængigheder mellem kapacitet, overvågning og eskalering.",
+    "actionPlanSection": "Der gennemføres målrettet kapacitetsforbedring, tidligere varsling ved afvigelser og skærpet opfølgning på de mest kritiske servicepunkter."
+  }
+}
