@@ -13,6 +13,11 @@ if [ "$branch" = "HEAD" ]; then
   exit 0
 fi
 
+# Only auto-push on main
+if [ "$branch" != "main" ]; then
+  exit 0
+fi
+
 # Push quietly; do not block commit if push fails.
 git push -u origin "$branch" >/dev/null 2>&1 || true
 
