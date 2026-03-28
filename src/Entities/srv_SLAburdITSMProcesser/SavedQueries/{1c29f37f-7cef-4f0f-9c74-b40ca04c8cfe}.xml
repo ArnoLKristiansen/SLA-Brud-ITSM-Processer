@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{1c29f37f-7cef-4f0f-9c74-b40ca04c8cfe}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="srv_nykolonne" select="1" icon="1" preview="1">
+        <row name="result" id="srv_slaburditsmprocesserid">
+          <cell name="srv_nykolonne" width="300" />
+          <cell name="createdon" width="125" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>1</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="srv_slaburditsmprocesser">
+          <attribute name="srv_slaburditsmprocesserid" />
+          <attribute name="srv_nykolonne" />
+          <attribute name="createdon" />
+          <order attribute="srv_nykolonne" descending="false" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="SLA burd ITSM Processer Advanced Find View" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

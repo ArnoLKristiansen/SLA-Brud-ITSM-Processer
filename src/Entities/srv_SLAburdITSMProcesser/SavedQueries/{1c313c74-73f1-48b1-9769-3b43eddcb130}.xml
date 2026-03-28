@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<savedqueries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedquery>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>0</CanBeDeleted>
+    <isquickfindquery>0</isquickfindquery>
+    <isprivate>0</isprivate>
+    <isdefault>1</isdefault>
+    <savedqueryid>{1c313c74-73f1-48b1-9769-3b43eddcb130}</savedqueryid>
+    <layoutxml>
+      <grid name="resultset" jump="srv_nykolonne" select="1" icon="1" preview="1">
+        <row name="result" id="srv_slaburditsmprocesserid">
+          <cell name="srv_nykolonne" width="300" />
+          <cell name="srv_itsmprocesnavn" width="150" />
+          <cell name="srv_slabeskrivelse" width="150" />
+          <cell name="srv_severity" width="150" />
+          <cell name="srv_maling" width="150" />
+          <cell name="srv_sladatofra" width="150" />
+          <cell name="srv_sladatotil" width="150" />
+          <cell name="srv_slaforklaring" width="150" />
+        </row>
+      </grid>
+    </layoutxml>
+    <querytype>0</querytype>
+    <fetchxml>
+      <fetch version="1.0" mapping="logical">
+        <entity name="srv_slaburditsmprocesser">
+          <attribute name="srv_slaburditsmprocesserid" />
+          <attribute name="srv_nykolonne" />
+          <attribute name="createdon" />
+          <order attribute="srv_nykolonne" descending="false" />
+          <filter type="and">
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+          <attribute name="srv_itsmprocesnavn" />
+          <attribute name="srv_slabeskrivelse" />
+          <attribute name="srv_severity" />
+          <attribute name="srv_maling" />
+          <attribute name="srv_sladatofra" />
+          <attribute name="srv_sladatotil" />
+          <attribute name="srv_slaforklaring" />
+        </entity>
+      </fetch>
+    </fetchxml>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <LocalizedNames>
+      <LocalizedName description="Active SLA burd ITSM Processer" languagecode="1033" />
+    </LocalizedNames>
+  </savedquery>
+</savedqueries>

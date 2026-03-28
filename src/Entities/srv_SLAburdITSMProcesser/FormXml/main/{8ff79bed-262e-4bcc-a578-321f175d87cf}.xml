@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<forms xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <systemform>
+    <formid>{8ff79bed-262e-4bcc-a578-321f175d87cf}</formid>
+    <IntroducedVersion>1.0</IntroducedVersion>
+    <FormPresentation>1</FormPresentation>
+    <FormActivationState>1</FormActivationState>
+    <form>
+      <tabs>
+        <tab verticallayout="true" id="{b270ecea-2bca-46ef-99c5-26b6bba1b425}" IsUserDefined="1">
+          <labels>
+            <label description="General" languagecode="1033" />
+          </labels>
+          <columns>
+            <column width="100%">
+              <sections>
+                <section showlabel="false" showbar="false" IsUserDefined="0" id="{e7b80c62-564d-4d8e-9011-e7431605dcc8}">
+                  <labels>
+                    <label description="General" languagecode="1033" />
+                  </labels>
+                  <rows>
+                    <row>
+                      <cell id="{1f3a1be9-6101-486f-97ca-e28ced85d4b6}">
+                        <labels>
+                          <label description="Ref. id " languagecode="1033" />
+                        </labels>
+                        <control id="srv_nykolonne" classid="{4273EDBD-AC1D-40d3-9FB2-095C621B552D}" datafieldname="srv_nykolonne" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4ed52cc4-37e0-4908-800f-503d464795fd}">
+                        <labels>
+                          <label description="Owner" languagecode="1033" />
+                        </labels>
+                        <control id="ownerid" classid="{270BD3DB-D9AF-4782-9025-509E298DEC0A}" datafieldname="ownerid" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{4f8ac485-cd1d-4bfb-aa36-ffd628120b2f}">
+                        <labels>
+                          <label description="ITSM Proces Navn" languagecode="1033" />
+                        </labels>
+                        <control id="srv_itsmprocesnavn" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="srv_itsmprocesnavn" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{a45c2cab-d319-4f40-b525-78c06ce9f582}">
+                        <labels>
+                          <label description="SLA beskrivelse" languagecode="1033" />
+                        </labels>
+                        <control id="srv_slabeskrivelse" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="srv_slabeskrivelse" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{fe1e018d-0eb8-4205-97ec-142812fd2b77}">
+                        <labels>
+                          <label description="Severity " languagecode="1033" />
+                        </labels>
+                        <control id="srv_severity" classid="{3ef39988-22bb-4f0b-bbbe-64b5a3748aee}" datafieldname="srv_severity" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{dc2566cb-6fff-4df9-b263-6c7a9237be32}">
+                        <labels>
+                          <label description="Måling" languagecode="1033" />
+                        </labels>
+                        <control id="srv_maling" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="srv_maling" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{45fe0210-473e-4f4f-9778-cebacd5629cc}">
+                        <labels>
+                          <label description="SLA Dato fra" languagecode="1033" />
+                        </labels>
+                        <control id="srv_sladatofra" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="srv_sladatofra" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{70f7c2eb-f7fc-4d3b-8d22-5197d5ebb9af}">
+                        <labels>
+                          <label description="SLA Dato til" languagecode="1033" />
+                        </labels>
+                        <control id="srv_sladatotil" classid="{5b773807-9fb2-42db-97c3-7a91eff8adff}" datafieldname="srv_sladatotil" />
+                      </cell>
+                    </row>
+                    <row>
+                      <cell id="{e25beb0a-4cc1-47d2-8dd4-14fd7af182fd}">
+                        <labels>
+                          <label description="SLA Forklaring " languagecode="1033" />
+                        </labels>
+                        <control id="srv_slaforklaring" classid="{4273edbd-ac1d-40d3-9fb2-095c621b552d}" datafieldname="srv_slaforklaring" />
+                      </cell>
+                    </row>
+                  </rows>
+                </section>
+              </sections>
+            </column>
+          </columns>
+        </tab>
+      </tabs>
+    </form>
+    <IsCustomizable>1</IsCustomizable>
+    <CanBeDeleted>1</CanBeDeleted>
+    <LocalizedNames>
+      <LocalizedName description="Information" languagecode="1033" />
+    </LocalizedNames>
+    <Descriptions>
+      <Description description="A form for this entity." languagecode="1033" />
+    </Descriptions>
+  </systemform>
+</forms>
