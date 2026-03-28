@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Auto-push current branch after each commit.
+# Skip if no origin is configured.
+if ! git remote get-url origin >/dev/null 2>&1; then
+  exit 0
+fi
+
+branch="$(git rev-parse --abbrev-ref HEAD)"
+
+# Skip detached HEAD
+if [ "$branch" = "HEAD" ]; then
+  exit 0
+fi
+
+# Push quietly; do not block commit if push fails.
+git push -u origin "$branch" >/dev/null 2>&1 || true
+
+exit 0
